@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Calendar from "./components/calendar/Calendar";
+import Picker from "./components/filters/Picker";
+import {useAppSelector} from "./hooks/useAppSelector";
+import FormReminder from "./components/form/FormReminder";
+import FormDatePick from "./components/form/FormDatePick";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => {
+
+    const {isOpenRemindForm} = useAppSelector(state => state.reminder)
+    const {isOpenDateForm} = useAppSelector(state => state.datePick)
+
+    return (
+        <>
+        <div className='wrapper' style={isOpenRemindForm || isOpenDateForm ? {filter: 'blur(1px)', transition: 'all 0.25s'} : undefined}>
+                <Picker/>
+                <Calendar/>
+        </div>
+            {isOpenRemindForm && <FormReminder/>}
+            {isOpenDateForm && <FormDatePick/>}
+        </>
+    );
+};
 
 export default App;
