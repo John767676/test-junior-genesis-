@@ -7,8 +7,8 @@ interface initialStateType {
 }
 
 const initialState: initialStateType = {
-    year: localStorage.getItem('year') !== '' ? +localStorage.getItem('year')! : new Date().getFullYear(),
-    month: localStorage.getItem('month') !== '' ? +localStorage.getItem('month')! : new Date().getMonth(),
+    year: localStorage.getItem('year') !== null ? +localStorage.getItem('year')! : new Date().getFullYear(),
+    month: localStorage.getItem('month') !== null ? +localStorage.getItem('month')! : new Date().getMonth(),
     isOpenDateForm: false
 }
 
